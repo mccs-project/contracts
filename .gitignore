@@ -1,0 +1,11 @@
+node_modules
+
+build
+types
+
+migrations/*.js
+migrations/*.map
+
+# OpenZeppelin
+.openzeppelin/unknown-*.json
+
