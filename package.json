@@ -1,0 +1,42 @@
+{
+  "name": "mccs-contracts",
+  "version": "0.1.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "remigrate": "truffle migrate --reset --network development && npm run migrate",
+    "generate-types": "typechain --target=truffle-v5 'build/contracts/*.json'",
+    "migrate": "tsc -p ./tsconfig.migrate.json --outDir ./migrations && truffle migrate --network development",
+    "typecheck": "truffle compile && npm run generate-types && tsc --noEmit",
+    "//test": "npm run typecheck && cross-env TRUFFLE_NOT_USE_NETWORK_OPTION=true truffle test test/common/DummyStableCoin.spec.ts",
+    "test": "npm run clean:migrations && npm run typecheck && cross-env TRUFFLE_NOT_USE_NETWORK_OPTION=true truffle test",
+    "clean:migrations": "rimraf migrations/*.js migrations/*.map"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mccs-project/contracts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mccs-project/contracts/issues"
+  },
+  "homepage": "https://github.com/mccs-project/contracts#readme",
+  "devDependencies": {
+    "@typechain/truffle-v5": "^8.0.1",
+    "@types/chai": "^4.3.1",
+    "@types/mocha": "^9.1.1",
+    "cross-env": "^7.0.3",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.8.2",
+    "typechain": "^8.1.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts-upgradeable": "^4.7.0",
+    "@openzeppelin/truffle-upgrades": "^1.15.0"
+  }
+}
